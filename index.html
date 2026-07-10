@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Film Festival of Bahrain</title>
+  <meta name="description" content="Placeholder" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="#top" class="nav__brand">
+      <img src="./assets/logo-black.svg" alt="SFFB" />
+    </a>
+    <nav class="nav__links">
+      <a href="#">About</a>
+      <a href="#">Films</a>
+      <a href="#">Events</a>
+      <a href="#">Team</a>
+      <a href="#">Sponsors</a>
+      <a href="#">Submit</a>
+    </nav>
+    <a href="#tickets" class="btn btn--red">Tickets</a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero__blob hero__blob--red"></div>
+      <div class="hero__blob hero__blob--sky"></div>
+      <div class="hero__blob hero__blob--lime"></div>
+
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <span class="eyebrow"><span class="dot"></span> Dates TBA</span>
+          <h1 class="display">
+            Bringing baharini films to<br />
+            <span class="c-sun">The</span>
+            <span class="c-cyan">Big</span>
+            <span class="c-coral">Screen.</span>
+          </h1>
+          <p class="lede">
+            Fill in text.
+          </p>
+          <div class="hero__actions">
+            <a href="#" class="btn btn--sun">Get tickets</a>
+            <a href="#" class="btn btn--ghost">Learn more →</a>
+          </div>
+        </div>
+
+        <aside class="reel" aria-hidden="true">
+          <div class="reel__row"><span>Reel</span><span>16mm</span></div>
+          <div class="reel__big">
+            <div class="display reel__year">2026</div>
+            </div>
+          <div class="reel__row">
+            <img src="./assets/logo-black.svg" alt="" />
+          </div>
+        </aside>
+      </div>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track" id="marquee"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section section--paper">
+      <div class="section__inner">
+        <div class="kicker">01 / About</div>
+        <h2 class="display h2">Placeholdert<br /><span class="c-red"></span></h2>
+        <div class="prose">
+          <p>Placeholder.</p>
+          <p>Placeholder.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOVIE SHOWCASE -->
+    <section id="films" class="section section--paper section--divider">
+      <div class="section__inner">
+        <div class="kicker">02 / Selection</div>
+        <h2 class="display h2">Film<br /><span class="c-sky">showcase.</span></h2>
+        <p class="prose">Posters and descriptions.</p>
+
+        <div class="film-grid" id="film-grid">
+          <!-- rendered by script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- UPCOMING EVENTS + CALENDAR -->
+    <section id="events" class="section section--sun">
+      <div class="section__inner grid-2">
+        <div>
+          <div class="kicker">03 / Upcoming</div>
+          <h2 class="display h2">Events<br /><span class="c-red">calendar.</span></h2>
+          <p class="prose">Placeholder.</p>
+          <div class="calendar" id="calendar" aria-label="Events calendar"></div>
+        </div>
+        <div>
+          <ul class="events" id="events-list">
+            <li class="events__empty">No events scheduled yet. Check back soon!</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEET THE TEAM -->
+    <section id="team" class="section section--paper">
+      <div class="section__inner">
+        <div class="kicker">04 / Team</div>
+        <h2 class="display h2">Meet the<br /><span class="c-coral">team.</span></h2>
+        <p class="prose">Placeholder.</p>
+
+        <div class="team-grid" id="team-grid">
+          <!-- rendered by script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SPONSORS -->
+    <section id="sponsors" class="section section--ink">
+      <div class="section__inner">
+        <div class="kicker kicker--light">05 / Sponsors</div>
+        <h2 class="display h2 c-paper">Partners &amp;<br /><span class="c-sun">sponsors.</span></h2>
+        <p class="prose c-paper">Placeholder. Email <a href="mailto:sffb25@gmail.com">sffb25@gmail.com</a>.</p>
+
+        <div class="sponsor-grid" id="sponsor-grid">
+          <!-- rendered by script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKETS -->
+    <section id="tickets" class="section section--coral">
+      <div class="section__inner">
+        <div class="kicker">06 / Tickets</div>
+        <h2 class="display h2">Tickets &amp;<br />passes.</h2>
+        <p class="prose">Placeholder.</p>
+        <div class="hero__actions">
+          <a href="#" class="btn btn--ink" id="tickets-btn" aria-disabled="true">Buy tickets</a>
+          <a href="#submit" class="btn btn--ghost btn--ghost-dark">Filmmakers: submit →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUBMIT -->
+    <section id="submit" class="section section--sky">
+      <div class="section__inner grid-2">
+        <div>
+          <div class="kicker">07 / Filmmakers</div>
+          <h2 class="display h2">Submissions<br />closed.</h2>
+          <p class="prose">Placeholder.</p>
+        </div>
+        <form class="card" id="notify-form" novalidate>
+          <label for="email" class="kicker">Notify me</label>
+          <input id="email" type="email" required placeholder="you@somewhere.film" autocomplete="email" />
+          <button type="submit" class="btn btn--ink">Subscribe</button>
+          <p class="form__msg" id="form-msg" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <img src="./assets/logo-white.svg" alt="SFFB" class="footer__logo" />
+      <p class="c-paper">Student Film Festival of Bahrain.</p>
+      <p class="footer__meta"> <span id="year"></span> SFFB</p>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
