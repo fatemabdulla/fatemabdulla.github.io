@@ -127,16 +127,17 @@ a { color: inherit; }
   .hero__inner { grid-template-columns: 1.4fr 1fr; padding: 8rem 1.5rem 9rem; align-items: center; }
 }
 
-/* Rectangular color slabs — no circles */
-.hero__slab {
+/* Single-image slab composition (replaces the old separate rectangle divs) */
+.hero__slabs-bg {
   position: absolute;
-  pointer-events: none;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
   z-index: 0;
-  opacity: 0.85;
+  pointer-events: none;
 }
-.hero__slab--red   { right: -60px; top: 40px;  width: 340px; height: 100px; background: var(--red);   transform: rotate(-6deg); }
-.hero__slab--sky   { left: -80px; bottom: 15%; width: 260px; height: 80px;  background: var(--sky);   transform: rotate(5deg); }
-.hero__slab--grass { right: 30%;  top: 62%;    width: 90px;  height: 90px;  background: var(--grass); transform: rotate(12deg); }
 
 /* Brand decor pieces */
 .hero__decor {
