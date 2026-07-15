@@ -142,6 +142,33 @@
     });
   }
 
+  // ---------- Mobile nav toggle ----------
+  var navToggle = document.getElementById("navToggle");
+  var mobileMenu = document.getElementById("mobileMenu");
+  function closeMobileMenu() {
+    if (!navToggle || !mobileMenu) return;
+    navToggle.setAttribute("aria-expanded", "false");
+    mobileMenu.classList.remove("is-open");
+  }
+  if (navToggle && mobileMenu) {
+    navToggle.addEventListener("click", function () {
+      var isOpen = navToggle.getAttribute("aria-expanded") === "true";
+      navToggle.setAttribute("aria-expanded", String(!isOpen));
+      mobileMenu.classList.toggle("is-open", !isOpen);
+    });
+    mobileMenu.addEventListener("click", function (e) {
+      if (e.target.closest && e.target.closest("a")) closeMobileMenu();
+    });
+    document.addEventListener("click", function (e) {
+      if (!mobileMenu.classList.contains("is-open")) return;
+      if (mobileMenu.contains(e.target) || navToggle.contains(e.target)) return;
+      closeMobileMenu();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeMobileMenu();
+    });
+  }
+
   // ---------- Hash-based page routing ----------
   var pages = document.querySelectorAll('[data-page]');
   var navLinks = document.querySelectorAll('[data-route]');
@@ -165,6 +192,7 @@
     navLinks.forEach(function (a) {
       a.classList.toggle('is-active', a.getAttribute('data-route') === route);
     });
+    closeMobileMenu();
     window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
   }
   window.addEventListener('hashchange', function () { showRoute(currentRoute()); });

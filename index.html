@@ -27,7 +27,23 @@
     <a href="#/sponsors" data-route="/sponsors">Sponsors</a>
     <a href="#/submit" data-route="/submit">Submit</a>
   </nav>
-  <a href="#/tickets" class="btn btn--red" data-route="/tickets">Tickets</a>
+  <div class="nav__actions">
+    <a href="#/tickets" class="btn btn--red" data-route="/tickets">Tickets</a>
+    <button type="button" class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu__links">
+      <a href="#/about" data-route="/about">About</a>
+      <a href="#/films" data-route="/films">Films</a>
+      <a href="#/events" data-route="/events">Events</a>
+      <a href="#/sponsors" data-route="/sponsors">Sponsors</a>
+      <a href="#/submit" data-route="/submit">Submit</a>
+      <a href="#/tickets" data-route="/tickets" class="mobile-menu__cta">Tickets</a>
+    </nav>
+  </div>
 </header>
 
 <main id="top">
