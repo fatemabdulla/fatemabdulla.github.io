@@ -1,178 +1,183 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Student Film Festival of Bahrain</title>
-  <meta name="description" content="Placeholder" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SFFB 2026 — Student Film Festival of Bahrain</title>
+<meta name="description" content="A festival celebrating original student cinema from across Bahrain — screenings, panels, and one long weekend of new voices." />
+<meta property="og:title" content="SFFB 2026 — Student Film Festival of Bahrain" />
+<meta property="og:description" content="Original Bahraini student cinema on the big screen." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="brand/logo-primary.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="nav">
-    <a href="#top" class="nav__brand">
-      <img src="./assets/logo-black.svg" alt="SFFB" />
-    </a>
-    <nav class="nav__links">
-      <a href="#">About</a>
-      <a href="#">Films</a>
-      <a href="#">Events</a>
-      <a href="#">Team</a>
-      <a href="#">Sponsors</a>
-      <a href="#">Submit</a>
-    </nav>
-    <a href="#tickets" class="btn btn--red">Tickets</a>
-  </header>
+<header class="nav">
+  <a href="#/" class="nav__brand" aria-label="SFFB home" data-route="/">
+    <img src="brand/logo-white.svg" alt="SFFB 2026" />
+  </a>
+  <nav class="nav__links">
+    <a href="#/about" data-route="/about">About</a>
+    <a href="#/films" data-route="/films">Films</a>
+    <a href="#/events" data-route="/events">Events</a>
+    <a href="#/sponsors" data-route="/sponsors">Sponsors</a>
+    <a href="#/submit" data-route="/submit">Submit</a>
+  </nav>
+  <a href="#/tickets" class="btn btn--red" data-route="/tickets">Tickets</a>
+</header>
 
-  <main id="top">
+<main id="top">
+  <!-- HOME / LANDING -->
+  <section class="page" data-page="/">
     <section class="hero">
-      <div class="hero__blob hero__blob--red"></div>
-      <div class="hero__blob hero__blob--sky"></div>
-      <div class="hero__blob hero__blob--lime"></div>
+      <div class="hero__slab hero__slab--red"></div>
+      <div class="hero__slab hero__slab--sky"></div>
+      <div class="hero__slab hero__slab--grass"></div>
+      <img src="brand/layers.svg" alt="" class="hero__decor hero__decor--layers" aria-hidden="true" />
+      <img src="brand/light.svg" alt="" class="hero__decor hero__decor--light" aria-hidden="true" />
 
       <div class="hero__inner">
         <div class="hero__copy">
-          <span class="eyebrow"><span class="dot"></span> Dates TBA</span>
+          <span class="eyebrow"><span class="eyebrow__tick"></span> Dates TBA · Manama, Bahrain</span>
           <h1 class="display">
-            Bringing baharini films to<br />
-            <span class="c-sun">The</span>
-            <span class="c-cyan">Big</span>
-            <span class="c-coral">Screen.</span>
+            Bringing Bahraini films to<br />
+            <span class="c-amber">The</span> <span class="c-sky">Big</span> <span class="c-red">Screen.</span>
           </h1>
-          <p class="lede">
-            Fill in text.
-          </p>
+          <p class="lede">A festival celebrating original student cinema from across Bahrain — screenings, panels, and one long weekend of new voices.</p>
           <div class="hero__actions">
-            <a href="#" class="btn btn--sun">Get tickets</a>
-            <a href="#" class="btn btn--ghost">Learn more →</a>
+            <a href="#/tickets" class="btn btn--sky" data-route="/tickets">Get tickets</a>
+            <a href="#/about" class="btn btn--ghost" data-route="/about">Learn more →</a>
           </div>
         </div>
 
         <aside class="reel" aria-hidden="true">
+          <img src="brand/reel.svg" alt="" class="reel__mark" />
           <div class="reel__row"><span>Reel</span><span>16mm</span></div>
-          <div class="reel__big">
-            <div class="display reel__year">2026</div>
-            </div>
-          <div class="reel__row">
-            <img src="./assets/logo-black.svg" alt="" />
-          </div>
+          <div class="display reel__year">20<span class="amp">26</span></div>
+          <div class="reel__row"><span>Edition 01</span><span>BH</span></div>
         </aside>
       </div>
 
       <div class="marquee" aria-hidden="true">
-        <div class="marquee__track" id="marquee"></div>
+        <div class="marquee__track" id="marqueeTrack"></div>
       </div>
     </section>
+  </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="section section--paper">
+  <!-- ABOUT + TEAM (merged) -->
+  <section class="page" data-page="/about">
+    <section class="section section--ink-3">
+      <img src="brand/layers.svg" alt="" class="section__decor section__decor--layers" aria-hidden="true" />
       <div class="section__inner">
         <div class="kicker">01 / About</div>
-        <h2 class="display h2">Placeholdert<br /><span class="c-red"></span></h2>
+        <h2 class="display h2">A stage for<br /><span class="c-red">new voices.</span></h2>
         <div class="prose">
-          <p>Placeholder.</p>
-          <p>Placeholder.</p>
+          <p>SFFB is a student-run festival highlighting original Bahraini cinema. We program shorts, features, and experimental work from filmmakers still finding their voice.</p>
+          <p>Every year we bring the community together for screenings, filmmaker Q&amp;As, and workshops that make cinema feel possible.</p>
         </div>
       </div>
     </section>
-
-    <!-- MOVIE SHOWCASE -->
-    <section id="films" class="section section--paper section--divider">
+    <section class="section section--ink">
+      <img src="brand/light.svg" alt="" class="section__decor section__decor--light" aria-hidden="true" />
       <div class="section__inner">
-        <div class="kicker">02 / Selection</div>
-        <h2 class="display h2">Film<br /><span class="c-sky">showcase.</span></h2>
-        <p class="prose">Posters and descriptions.</p>
-
-        <div class="film-grid" id="film-grid">
-          <!-- rendered by script.js -->
-        </div>
+        <div class="kicker">02 / Team</div>
+        <h2 class="display h2">Meet the<br /><span class="c-grass">team.</span></h2>
+        <p class="prose">The volunteers, programmers, and organizers behind SFFB.</p>
+        <div class="team-grid" id="teamGrid"></div>
       </div>
     </section>
+  </section>
 
-    <!-- UPCOMING EVENTS + CALENDAR -->
-    <section id="events" class="section section--sun">
+  <!-- FILMS -->
+  <section class="page" data-page="/films">
+    <section class="section section--ink">
+      <div class="section__inner">
+        <div class="kicker">03 / Selection</div>
+        <h2 class="display h2">Film<br /><span class="c-sky">showcase.</span></h2>
+        <p class="prose">Posters and synopses arrive as the 2026 selection is finalized.</p>
+        <div class="film-grid" id="filmGrid"></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="page" data-page="/events">
+    <section class="section section--sky">
       <div class="section__inner grid-2">
         <div>
-          <div class="kicker">03 / Upcoming</div>
-          <h2 class="display h2">Events<br /><span class="c-red">calendar.</span></h2>
-          <p class="prose">Placeholder.</p>
-          <div class="calendar" id="calendar" aria-label="Events calendar"></div>
+          <div class="kicker kicker--dark">04 / Upcoming</div>
+          <h2 class="display h2">Events<br />calendar.</h2>
+          <p class="prose">Screenings, panels, and after-parties will drop here as they're confirmed.</p>
+          <div class="calendar" aria-label="Events calendar" id="calendar"></div>
         </div>
         <div>
-          <ul class="events" id="events-list">
-            <li class="events__empty">No events scheduled yet. Check back soon!</li>
+          <ul class="events">
+            <li class="events__empty">No events scheduled yet. Check back soon.</li>
           </ul>
         </div>
       </div>
     </section>
+  </section>
 
-    <!-- MEET THE TEAM -->
-    <section id="team" class="section section--paper">
+  <!-- SPONSORS -->
+  <section class="page" data-page="/sponsors">
+    <section class="section section--ink">
       <div class="section__inner">
-        <div class="kicker">04 / Team</div>
-        <h2 class="display h2">Meet the<br /><span class="c-coral">team.</span></h2>
-        <p class="prose">Placeholder.</p>
-
-        <div class="team-grid" id="team-grid">
-          <!-- rendered by script.js -->
-        </div>
+        <div class="kicker">05 / Sponsors</div>
+        <h2 class="display h2">Partners &amp;<br /><span class="c-sky">sponsors.</span></h2>
+        <p class="prose">Interested in supporting SFFB? Email <a href="mailto:sffb25@gmail.com">sffb25@gmail.com</a>.</p>
+        <div class="sponsor-grid" id="sponsorGrid"></div>
       </div>
     </section>
+  </section>
 
-    <!-- SPONSORS -->
-    <section id="sponsors" class="section section--ink">
+  <!-- TICKETS -->
+  <section class="page" data-page="/tickets">
+    <section class="section section--red">
       <div class="section__inner">
-        <div class="kicker kicker--light">05 / Sponsors</div>
-        <h2 class="display h2 c-paper">Partners &amp;<br /><span class="c-sun">sponsors.</span></h2>
-        <p class="prose c-paper">Placeholder. Email <a href="mailto:sffb25@gmail.com">sffb25@gmail.com</a>.</p>
-
-        <div class="sponsor-grid" id="sponsor-grid">
-          <!-- rendered by script.js -->
-        </div>
-      </div>
-    </section>
-
-    <!-- TICKETS -->
-    <section id="tickets" class="section section--coral">
-      <div class="section__inner">
-        <div class="kicker">06 / Tickets</div>
+        <div class="kicker kicker--dark" style="color: rgba(255,255,255,0.75)">06 / Tickets</div>
         <h2 class="display h2">Tickets &amp;<br />passes.</h2>
-        <p class="prose">Placeholder.</p>
+        <p class="prose" style="color: rgba(255,255,255,0.85)">Single-screening tickets and full-festival passes go on sale ahead of the 2026 edition.</p>
         <div class="hero__actions">
-          <a href="#" class="btn btn--ink" id="tickets-btn" aria-disabled="true">Buy tickets</a>
-          <a href="#submit" class="btn btn--ghost btn--ghost-dark">Filmmakers: submit →</a>
+          <button type="button" class="btn btn--paper" id="ticketBtn">Buy tickets</button>
+          <a href="#/submit" class="btn btn--ghost" data-route="/submit">Filmmakers: submit →</a>
         </div>
       </div>
     </section>
+  </section>
 
-    <!-- SUBMIT -->
-    <section id="submit" class="section section--sky">
+  <!-- SUBMIT -->
+  <section class="page" data-page="/submit">
+    <section class="section section--ink-3">
       <div class="section__inner grid-2">
         <div>
           <div class="kicker">07 / Filmmakers</div>
-          <h2 class="display h2">Submissions<br />closed.</h2>
-          <p class="prose">Placeholder.</p>
+          <h2 class="display h2">Submissions<br /><span class="c-grass">closed.</span></h2>
+          <p class="prose">Submissions for 2026 open later this year. Drop your email and we'll let you know the moment they do.</p>
         </div>
-        <form class="card" id="notify-form" novalidate>
+        <form class="card" id="subscribeForm" novalidate>
           <label for="email" class="kicker">Notify me</label>
-          <input id="email" type="email" required placeholder="you@somewhere.film" autocomplete="email" />
-          <button type="submit" class="btn btn--ink">Subscribe</button>
-          <p class="form__msg" id="form-msg" role="status"></p>
+          <input id="email" name="email" type="email" required placeholder="you@somewhere.film" autocomplete="email" />
+          <button type="submit" class="btn btn--paper">Subscribe</button>
+          <p class="form__msg" id="formMsg" role="status"></p>
         </form>
       </div>
     </section>
-  </main>
+  </section>
+</main>
 
-  <footer class="footer">
-    <div class="footer__inner">
-      <img src="./assets/logo-white.svg" alt="SFFB" class="footer__logo" />
-      <p class="c-paper">Student Film Festival of Bahrain.</p>
-      <p class="footer__meta"> <span id="year"></span> SFFB</p>
-    </div>
-  </footer>
+<footer class="footer">
+  <div class="footer__inner">
+    <img src="brand/logo-white.svg" alt="SFFB 2026" class="footer__logo" />
+    <p style="color: rgba(246,247,247,0.7); margin: 0">Student Film Festival of Bahrain.</p>
+    <p class="footer__meta">© <span id="year"></span> SFFB · sffb25@gmail.com</p>
+  </div>
+</footer>
 
-  <script src="./script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

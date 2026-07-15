@@ -1,23 +1,13 @@
-// SFFB — small vanilla JS
+(function () {
+  "use strict";
 
-// Marquee content (looped twice so the -50% translate animation is seamless)
-(function buildMarquee() {
-  var track = document.getElementById("marquee");
-  if (!track) return;
-  var items = ["SFFB 2026", "✦", "Student Film Festival", "✦", "Original Bahraini Cinema", "✦", "Dates TBA", "✦"];
-  var html = items.map(function (t, i) {
-    var colors = ["c-sun", "c-paper", "c-cyan", "c-paper", "c-coral", "c-paper", "c-sun", "c-paper"];
-    return '<span class="' + colors[i % colors.length] + '">' + t + "</span>";
-  }).join("");
-  track.innerHTML = html + html;
-})();
+  // Year
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-// Footer year
-document.getElementById("year").textContent = new Date().getFullYear();
-
-// Smooth scroll for in-page anchors
-document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-  a.addEventListener("click", function (e) {
+  // Smooth-scroll for in-page anchors
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
     var id = a.getAttribute("href").slice(1);
     if (!id) return;
     var el = document.getElementById(id);
@@ -26,127 +16,157 @@ document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     el.scrollIntoView({ behavior: "smooth", block: "start" });
     history.replaceState(null, "", "#" + id);
   });
-});
 
-// Film showcase — empty placeholder cards (no fabricated titles)
-(function buildFilms() {
-  var grid = document.getElementById("film-grid");
-  if (!grid) return;
-  var accents = ["c-red", "c-sky", "c-sun", "c-coral", "c-lime", "c-cyan"];
-  var html = "";
-  for (var i = 0; i < 6; i++) {
-    var n = String(i + 1).padStart(2, "0");
-    html +=
-      '<article class="film">' +
-        '<div class="film__poster">' +
-          '<span class="film__num">' + n + '</span>' +
-          '<span class="film__tba">Poster TBA</span>' +
-        '</div>' +
-        '<div class="film__meta">' +
-          '<h3 class="film__title ' + accents[i % accents.length] + '">Title to be announced</h3>' +
-          '<p class="film__info"><span>Dir. —</span> · <span>Runtime —</span></p>' +
-          '<p class="film__synopsis">Placeholder.</p>' +
-        '</div>' +
-      '</article>';
-  }
-  grid.innerHTML = html;
-})();
-
-// Team — empty placeholder cards
-(function buildTeam() {
-  var grid = document.getElementById("team-grid");
-  if (!grid) return;
-  var colors = ["--sun", "--sky", "--coral", "--lime", "--cyan", "--amber"];
-  var html = "";
-  for (var i = 0; i < 6; i++) {
-    html +=
-      '<div class="member">' +
-        '<div class="member__avatar" style="background: var(' + colors[i % colors.length] + ')">' +
-          '<span>?</span>' +
-        '</div>' +
-        '<h3 class="member__name">Name TBA</h3>' +
-        '<p class="member__role">Role TBA</p>' +
-      '</div>';
-  }
-  grid.innerHTML = html;
-})();
-
-// Sponsors — empty placeholder slots
-(function buildSponsors() {
-  var grid = document.getElementById("sponsor-grid");
-  if (!grid) return;
-  var html = "";
-  for (var i = 0; i < 8; i++) {
-    html += '<div class="sponsor"><span>Your logo here</span></div>';
-  }
-  grid.innerHTML = html;
-})();
-
-// Calendar — current month grid, no fabricated events
-(function buildCalendar() {
-  var el = document.getElementById("calendar");
-  if (!el) return;
-
-  var now = new Date();
-  var year = now.getFullYear();
-  var month = now.getMonth();
-  var monthName = now.toLocaleString(undefined, { month: "long" });
-  var firstDay = new Date(year, month, 1).getDay(); // 0 = Sun
-  // Shift so Monday = 0
-  var offset = (firstDay + 6) % 7;
-  var daysInMonth = new Date(year, month + 1, 0).getDate();
-  var today = now.getDate();
-
-  var head =
-    '<div class="cal__head">' +
-      '<span class="cal__title">' + monthName + " " + year + '</span>' +
-      '<span class="cal__note">No events</span>' +
-    '</div>';
-
-  var dow = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-  var dowHtml = '<div class="cal__grid cal__grid--dow">' +
-    dow.map(function (d) { return '<span class="cal__dow">' + d + '</span>'; }).join("") +
-    '</div>';
-
-  var cells = "";
-  for (var i = 0; i < offset; i++) cells += '<span class="cal__cell cal__cell--blank"></span>';
-  for (var d = 1; d <= daysInMonth; d++) {
-    var cls = "cal__cell";
-    if (d === today) cls += " cal__cell--today";
-    cells += '<span class="' + cls + '">' + d + '</span>';
-  }
-  var grid = '<div class="cal__grid">' + cells + '</div>';
-
-  el.innerHTML = head + dowHtml + grid;
-})();
-
-// Notify form — client-side only (no backend wired up)
-(function () {
-  var form = document.getElementById("notify-form");
-  if (!form) return;
-  var msg = document.getElementById("form-msg");
-  var input = document.getElementById("email");
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var value = (input.value || "").trim();
-    var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-    if (!valid) {
-      msg.textContent = "Please enter a valid email address.";
-      msg.className = "form__msg is-err";
-      return;
+  // Marquee
+  var MARQUEE_ITEMS = [
+    { t: "SFFB 2026", c: "c-paper" },
+    { t: "//", c: "sep" },
+    { t: "Student Film Festival", c: "c-sky" },
+    { t: "//", c: "sep" },
+    { t: "Original Bahraini Cinema", c: "c-paper" },
+    { t: "//", c: "sep" },
+    { t: "Dates TBA", c: "c-red" },
+    { t: "//", c: "sep" }
+  ];
+  var track = document.getElementById("marqueeTrack");
+  if (track) {
+    var html = "";
+    for (var r = 0; r < 2; r++) {
+      MARQUEE_ITEMS.forEach(function (i) {
+        html += '<span class="' + i.c + '">' + i.t + "</span>";
+      });
     }
-    msg.textContent = "Thanks! We'll be in touch when submissions open.";
-    msg.className = "form__msg is-ok";
-    input.value = "";
-  });
-})();
+    track.innerHTML = html;
+  }
 
-// Tickets button — informational only until a provider is wired up
-(function () {
-  var btn = document.getElementById("tickets-btn");
-  if (!btn) return;
-  btn.addEventListener("click", function (e) {
-    e.preventDefault();
-    btn.textContent = "Ticketing not open yet. Check back soon";
-  });
+  // Film grid
+  var FILM_ACCENTS = ["c-red", "c-sky", "c-grass", "c-paper", "c-red", "c-sky"];
+  var fg = document.getElementById("filmGrid");
+  if (fg) {
+    var fh = "";
+    for (var i = 0; i < 6; i++) {
+      var num = String(i + 1).padStart(2, "0");
+      fh +=
+        '<article class="film">' +
+          '<div class="film__poster">' +
+            '<span class="film__num">' + num + "</span>" +
+            '<span class="film__tba">Poster TBA</span>' +
+          "</div>" +
+          '<div class="film__meta">' +
+            '<h3 class="film__title ' + FILM_ACCENTS[i % FILM_ACCENTS.length] + '">Title to be announced</h3>' +
+            '<p class="film__info"><span>Dir. —</span> · <span>Runtime —</span></p>' +
+            '<p class="film__synopsis">Synopsis coming soon.</p>' +
+          "</div>" +
+        "</article>";
+    }
+    fg.innerHTML = fh;
+  }
+
+  // Team grid
+  var TEAM_TINTS = ["var(--red)", "var(--sky)", "var(--grass)", "var(--ink)", "var(--red)", "var(--sky)"];
+  var tg = document.getElementById("teamGrid");
+  if (tg) {
+    var th = "";
+    for (var j = 0; j < 6; j++) {
+      th +=
+        '<div class="member">' +
+          '<div class="member__avatar" style="background:' + TEAM_TINTS[j % TEAM_TINTS.length] + '"><span>?</span></div>' +
+          '<h3 class="member__name">Name TBA</h3>' +
+          '<p class="member__role">Role TBA</p>' +
+        "</div>";
+    }
+    tg.innerHTML = th;
+  }
+
+  // Sponsor grid
+  var sg = document.getElementById("sponsorGrid");
+  if (sg) {
+    var sh = "";
+    for (var k = 0; k < 8; k++) sh += '<div class="sponsor"><span>Your logo here</span></div>';
+    sg.innerHTML = sh;
+  }
+
+  // Calendar (current month)
+  var cal = document.getElementById("calendar");
+  if (cal) {
+    var now = new Date();
+    var y = now.getFullYear();
+    var m = now.getMonth();
+    var monthName = now.toLocaleString(undefined, { month: "long" });
+    var firstDay = new Date(y, m, 1).getDay();
+    var offset = (firstDay + 6) % 7;
+    var days = new Date(y, m + 1, 0).getDate();
+    var today = now.getDate();
+
+    var out =
+      '<div class="cal__head"><span class="cal__title">' + monthName + " " + y +
+      '</span><span class="cal__note">No events</span></div>' +
+      '<div class="cal__grid cal__grid--dow">';
+    ["Mo","Tu","We","Th","Fr","Sa","Su"].forEach(function (d) {
+      out += '<span class="cal__dow">' + d + "</span>";
+    });
+    out += '</div><div class="cal__grid">';
+    for (var b = 0; b < offset; b++) out += '<span class="cal__cell cal__cell--blank"></span>';
+    for (var d = 1; d <= days; d++) {
+      out += '<span class="cal__cell' + (d === today ? " cal__cell--today" : "") + '">' + d + "</span>";
+    }
+    out += "</div>";
+    cal.innerHTML = out;
+  }
+
+  // Ticket button
+  var tb = document.getElementById("ticketBtn");
+  if (tb) {
+    tb.addEventListener("click", function () {
+      tb.textContent = "Ticketing not open yet — check back soon";
+    });
+  }
+
+  // Subscribe form
+  var form = document.getElementById("subscribeForm");
+  var msg = document.getElementById("formMsg");
+  if (form && msg) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var email = (form.email.value || "").trim();
+      var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      msg.classList.remove("is-ok", "is-err");
+      if (!valid) {
+        msg.textContent = "Please enter a valid email address.";
+        msg.classList.add("is-err");
+        return;
+      }
+      msg.textContent = "Thanks! We'll be in touch when submissions open.";
+      msg.classList.add("is-ok");
+      form.reset();
+    });
+  }
+
+  // ---------- Hash-based page routing ----------
+  var pages = document.querySelectorAll('[data-page]');
+  var navLinks = document.querySelectorAll('[data-route]');
+  function currentRoute() {
+    var h = (location.hash || '').replace(/^#/, '');
+    if (!h || h === '/') return '/';
+    return h;
+  }
+  function showRoute(route) {
+    var matched = false;
+    pages.forEach(function (p) {
+      var active = p.getAttribute('data-page') === route;
+      if (active) matched = true;
+      p.classList.toggle('is-active', active);
+    });
+    if (!matched) {
+      pages.forEach(function (p) {
+        p.classList.toggle('is-active', p.getAttribute('data-page') === '/');
+      });
+    }
+    navLinks.forEach(function (a) {
+      a.classList.toggle('is-active', a.getAttribute('data-route') === route);
+    });
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+  window.addEventListener('hashchange', function () { showRoute(currentRoute()); });
+  showRoute(currentRoute());
 })();
