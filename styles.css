@@ -35,7 +35,7 @@
 }
 
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
+html, body { margin: 0; padding: 0; overflow-x: hidden; }
 body {
   font-family: var(--font-sans);
   color: var(--paper);
@@ -67,12 +67,16 @@ a { color: inherit; }
 .nav {
   position: sticky; top: 0; z-index: 40;
   display: flex; align-items: center; justify-content: space-between;
+  flex-direction: row-reverse;
   gap: 1rem;
   padding: 0.9rem 1.5rem;
   background: rgba(10,10,8,0.85);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(246,247,247,0.12);
 }
+.nav__links { flex-direction: row-reverse; }
+.nav__actions { flex-direction: row-reverse; }
+
 .nav__brand { display: flex; align-items: center; text-decoration: none; }
 .nav__brand img { height: 26px; width: auto; }
 .nav__links { display: none; gap: 1.75rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--paper); }
@@ -123,7 +127,7 @@ a { color: inherit; }
   transition: max-height 0.3s ease, opacity 0.25s ease;
   z-index: 39;
 }
-.mobile-menu.is-open { max-height: 440px; opacity: 1; }
+.mobile-menu.is-open { max-height: 520px; opacity: 1; }
 .mobile-menu__links { display: flex; flex-direction: column; padding: 0.5rem 1.5rem 1.5rem; }
 .mobile-menu__links a {
   padding: 1rem 0;
@@ -191,6 +195,7 @@ a { color: inherit; }
   gap: 3rem;
   grid-template-columns: 1fr;
   z-index: 1;
+  overflow: hidden;
 }
 @media (min-width: 900px) {
   .hero__inner { grid-template-columns: 1.4fr 1fr; padding: 8rem 1.5rem 9rem; align-items: center; }
@@ -262,6 +267,7 @@ a { color: inherit; }
   font-family: var(--font-display); font-size: 1.75rem; text-transform: uppercase; letter-spacing: -0.02em;
   animation: marquee 30s linear infinite;
   padding-right: 2.5rem;
+  direction: ltr; /* keep ticker scroll direction consistent regardless of page language */
 }
 .marquee__track span { flex: none; }
 .marquee__track .sep { color: rgba(246,247,247,0.25); font-family: var(--font-mono); font-size: 1.25rem; }
@@ -467,4 +473,341 @@ a { color: inherit; }
 @media (min-width: 900px) {
   .reel { max-width: 520px; }
   .reel__year { font-size: 6.5rem; }
+}
+/* Footer grid + socials */
+.footer__grid { display: grid; gap: 2.5rem; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 768px) { .footer__grid { grid-template-columns: 1.4fr 1fr; } }
+.footer__heading { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.28em; color: rgba(246,247,247,0.5); margin: 0 0 1rem; }
+.socials { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.social {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 42px; height: 42px;
+  border: 1px solid rgba(246,247,247,0.25);
+  color: var(--paper);
+  transition: transform .15s, color .15s, border-color .15s;
+}
+.social:hover { color: var(--sky); border-color: var(--sky); transform: translate(-2px,-2px); }
+.social svg { width: 18px; height: 18px; }
+
+/* ---------- Countdown ---------- */
+.countdown {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  max-width: 720px;
+}
+.countdown__unit {
+  border: 1px solid rgba(246,247,247,0.2);
+  background: var(--ink-3);
+  padding: 1.25rem 0.75rem;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+}
+.countdown__num {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3.75rem);
+  letter-spacing: -0.02em;
+  color: var(--paper);
+  line-height: 1;
+}
+.countdown__label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: rgba(246,247,247,0.55);
+}
+.countdown__note {
+  margin-top: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(246,247,247,0.45);
+}
+
+/* ---------- Blurb + Learn more ---------- */
+.blurb {
+  max-width: 46rem;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  line-height: 1.5;
+  color: rgba(246,247,247,0.8);
+  margin: 0 0 2rem;
+}
+.learn-more {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  color: var(--sky);
+  border-bottom: 1px solid var(--sky);
+  padding-bottom: 0.35rem;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+.learn-more:hover { gap: 1rem; color: var(--paper); border-color: var(--paper); }
+
+/* ---------- Last year slideshow ---------- */
+.slideshow {
+  position: relative;
+  margin-top: 3.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(246,247,247,0.15);
+  background: var(--ink-3);
+  aspect-ratio: 16/9;
+}
+@media (min-width: 900px) {
+  .slideshow { max-width: 760px; }
+}
+.slideshow__track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+.slideshow__slide {
+  flex: 0 0 100%;
+  position: relative;
+  aspect-ratio: 16/9;
+  background:
+    repeating-linear-gradient(45deg, var(--ink-3) 0 12px, var(--ink) 12px 24px);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.slideshow__slide::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: url("brand/light.svg") no-repeat center / 55%;
+  opacity: 0.08;
+  pointer-events: none;
+}
+.slideshow__slide span {
+  position: relative; z-index: 1;
+  font-family: var(--font-mono);
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(246,247,247,0.4);
+  border: 1px dashed rgba(246,247,247,0.25);
+  padding: 0.6rem 1.1rem;
+}
+.slideshow__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(10,10,8,0.85);
+  border: 1px solid rgba(246,247,247,0.25);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  z-index: 2;
+}
+.slideshow__btn:hover {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+.slideshow__btn--prev { left: 0.75rem; }
+.slideshow__btn--next { right: 0.75rem; }
+.slideshow__dots {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 0.55rem;
+  z-index: 2;
+}
+.slideshow__dot {
+  width: 10px; height: 10px;
+  border: 1px solid rgba(246,247,247,0.4);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+.slideshow__dot.is-active {
+  background: var(--sky);
+  border-color: var(--sky);
+  transform: scale(1.2);
+}
+.slideshow__dot:hover {
+  background: var(--paper);
+  border-color: var(--paper);
+}
+.photo-strip__caption {
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(246,247,247,0.45);
+}
+
+/* ============================================================
+   RTL / Arabic language support
+   ============================================================ */
+
+/* Arabic-capable fonts (Archivo Black has no Arabic glyphs) */
+@font-face {
+  font-family: "Myriad Arabic";
+  src: url("fonts/MyriadArabic-Bold.woff2") format("woff2"),
+       url("fonts/MyriadArabic-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+.lang-ar {
+  --font-display: "Myriad Arabic", "Noto Kufi Arabic", var(--font-sans), sans-serif;
+  --font-sans: "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --font-mono: "IBM Plex Sans Arabic", ui-monospace, monospace;
+}
+.lang-ar .display {
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.15;
+  word-spacing: 0.02em;
+}
+.lang-ar .h2 { line-height: 1.15; }
+.lang-ar h1, .lang-ar h2, .lang-ar h3 { line-height: 1.2; }
+
+html[dir="rtl"] body { direction: rtl; }
+
+/* Numbers/dates read LTR even inside an RTL page */
+.ltr-embed { direction: ltr; unicode-bidi: isolate; }
+.countdown.ltr-embed { display: grid; } 
+html[dir="rtl"] .nav { flex-direction: row-reverse; }
+html[dir="rtl"] .nav__links { flex-direction: row-reverse; }
+html[dir="rtl"] .nav__actions { flex-direction: row-reverse; }
+html[dir="rtl"] .mobile-menu__links { text-align: right; }
+
+html[dir="rtl"] .hero__inner { direction: rtl; }
+html[dir="rtl"] .eyebrow { flex-direction: row-reverse; }
+html[dir="rtl"] .hero__actions { flex-direction: row-reverse; justify-content: flex-end; }
+html[dir="rtl"] .hero__decor--layers { right: auto; left: -40px; }
+html[dir="rtl"] .hero__decor--light { left: auto; right: -60px; }
+
+html[dir="rtl"] .reel__mark { right: auto; left: -50px; }
+html[dir="rtl"] .reel { transform: rotate(8deg); }
+html[dir="rtl"] .reel:hover { transform: rotate(4deg) scale(1.02); }
+html[dir="rtl"] .reel__row { flex-direction: row-reverse; }
+
+html[dir="rtl"] .section__decor--layers { right: auto; left: -60px; }
+html[dir="rtl"] .section__decor--light { left: auto; right: -40px; }
+html[dir="rtl"] .learn-more { flex-direction: row-reverse; }
+html[dir="rtl"] .learn-more span[aria-hidden] { transform: scaleX(-1); display: inline-block; }
+html[dir="rtl"] .grid-2 { direction: rtl; }
+
+html[dir="rtl"] .slideshow__btn--prev { left: auto; right: 0.75rem; }
+html[dir="rtl"] .slideshow__btn--next { right: auto; left: 0.75rem; }
+
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(246,247,247,0.3);
+  background: transparent;
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.lang-toggle:hover { border-color: var(--sky); color: var(--sky); }
+/* ============================================================
+   Arabic typography fixes — huge letter-spacing and uppercase
+   break Arabic script (letters must connect). Neutralize them
+   when the page is in Arabic.
+   ============================================================ */
+.lang-ar,
+.lang-ar .kicker,
+.lang-ar .eyebrow,
+.lang-ar .reel__row,
+.lang-ar .marquee__track,
+.lang-ar .marquee__track .sep,
+.lang-ar .mobile-menu__links a,
+.lang-ar .nav__links,
+.lang-ar .nav__links a,
+.lang-ar .btn,
+.lang-ar .film__num,
+.lang-ar .film__info,
+.lang-ar .film__tba,
+.lang-ar .member__name,
+.lang-ar .member__role,
+.lang-ar .sponsor,
+.lang-ar .cal__title,
+.lang-ar .cal__note,
+.lang-ar .cal__dow,
+.lang-ar .cal__cell,
+.lang-ar .events__empty,
+.lang-ar .footer__meta,
+.lang-ar .footer__heading,
+.lang-ar .photo-strip__caption,
+.lang-ar .countdown__label,
+.lang-ar .countdown__note,
+.lang-ar .slideshow__slide span,
+.lang-ar .lang-toggle,
+.lang-ar .learn-more,
+.lang-ar .form__msg {
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+/* Keep countdown numbers and reel year in Latin display look */
+.lang-ar .countdown__num,
+.lang-ar .reel__year,
+.lang-ar .cal__cell,
+.lang-ar .marquee__track {
+  font-family: "Archivo Black", var(--font-sans), sans-serif;
+}
+
+/* Slightly larger body sizes for Arabic readability */
+.lang-ar .prose,
+.lang-ar .lede,
+.lang-ar .blurb { line-height: 1.75; }
+
+/* Hero title in Arabic: hide the empty "the" span AND collapse the extra
+   space text nodes around it, so line 2 doesn't start with a leading gap. */
+.lang-ar .hero h1 span:empty { display: none; }
+.lang-ar .hero h1 span[data-i18n="hero_title_the"]:empty + span { margin-inline-start: 0; }
+.lang-ar .hero h1 {
+  font-size: clamp(2.4rem, 7.5vw, 5.5rem);
+  line-height: 1.15;
+}
+
+
+/* Arabic nav spacing */
+.lang-ar .nav__links { gap: 2rem; font-size: 0.95rem; }
+.lang-ar .mobile-menu__links a { font-size: 1rem; }
+
+/* Arabic buttons — a bit more padding, no letter-spacing */
+.lang-ar .btn { font-size: 0.9rem; padding: 0.85rem 1.5rem; }
+
+/* ============================================================
+   2025 highlights — better alignment
+   Center the slideshow within its section and match the caption.
+   ============================================================ */
+.slideshow {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+@media (min-width: 900px) {
+  .slideshow { max-width: 900px; }
+}
+.photo-strip__caption {
+  text-align: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.slideshow__slide {
+  width: 100%;
+  height: 100%;
 }

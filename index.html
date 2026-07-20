@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,7 +12,8 @@
 <link rel="icon" href="brand/logo-primary.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<!-- Latin fonts + Arabic fonts (Noto Kufi Arabic for headings, IBM Plex Sans Arabic for body/mono) -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -21,14 +22,15 @@
     <img src="brand/logo-white.svg" alt="SFFB 2026" />
   </a>
   <nav class="nav__links">
-    <a href="#/about" data-route="/about">About</a>
-    <a href="#/films" data-route="/films">Films</a>
-    <a href="#/events" data-route="/events">Events</a>
-    <a href="#/sponsors" data-route="/sponsors">Sponsors</a>
-    <a href="#/submit" data-route="/submit">Submit</a>
+    <a href="#/" data-route="/" data-i18n="nav_home">Home</a>
+    <a href="#/about" data-route="/about" data-i18n="nav_about">About</a>
+    <a href="#/films" data-route="/films" data-i18n="nav_films">Films</a>
+    <a href="#/events" data-route="/events" data-i18n="nav_events">Events</a>
+    <a href="#/submit" data-route="/submit" data-i18n="nav_submit">Submit</a>
   </nav>
   <div class="nav__actions">
-    <a href="#/tickets" class="btn btn--red" data-route="/tickets">Tickets</a>
+    <button type="button" class="lang-toggle" data-i18n="lang_toggle">العربية</button>
+    <a href="#/tickets" class="btn btn--red" data-route="/tickets" data-i18n="nav_tickets">Tickets</a>
     <button type="button" class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
@@ -36,12 +38,14 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <nav class="mobile-menu__links">
-      <a href="#/about" data-route="/about">About</a>
-      <a href="#/films" data-route="/films">Films</a>
-      <a href="#/events" data-route="/events">Events</a>
-      <a href="#/sponsors" data-route="/sponsors">Sponsors</a>
-      <a href="#/submit" data-route="/submit">Submit</a>
-      <a href="#/tickets" data-route="/tickets" class="mobile-menu__cta">Tickets</a>
+      <a href="#/" data-route="/" data-i18n="nav_home">Home</a>
+      <a href="#/about" data-route="/about" data-i18n="nav_about">About</a>
+      <a href="#/films" data-route="/films" data-i18n="nav_films">Films</a>
+      <a href="#/events" data-route="/events" data-i18n="nav_events">Events</a>
+      
+      <a href="#/submit" data-route="/submit" data-i18n="nav_submit">Submit</a>
+      <button type="button" class="lang-toggle" data-i18n="lang_toggle" style="margin-top: 0.5rem;">العربية</button>
+      <a href="#/tickets" data-route="/tickets" class="mobile-menu__cta" data-i18n="nav_tickets">Tickets</a>
     </nav>
   </div>
 </header>
@@ -56,28 +60,87 @@
 
       <div class="hero__inner">
         <div class="hero__copy">
-          <span class="eyebrow"><span class="eyebrow__tick"></span> Dates TBA · Manama, Bahrain</span>
+          <span class="eyebrow"><span class="eyebrow__tick"></span> <span data-i18n="hero_eyebrow">Dates TBA · Manama, Bahrain</span></span>
           <h1 class="display">
-            Bringing Bahraini films to<br />
-            <span class="c-amber">The</span> <span class="c-sky">Big</span> <span class="c-red">Screen.</span>
+            <span data-i18n="hero_title_line1">Bringing Bahraini films to</span><br />
+            <span class="c-amber" data-i18n="hero_title_the">The</span> <span class="c-sky" data-i18n="hero_title_big">Big</span> <span class="c-red" data-i18n="hero_title_screen">Screen.</span>
           </h1>
-          <p class="lede">A festival celebrating original student cinema from across Bahrain — screenings, panels, and one long weekend of new voices.</p>
+          <p class="lede" data-i18n="hero_lede">A festival celebrating original student cinema from across Bahrain — screenings, panels, and one long weekend of new voices.</p>
           <div class="hero__actions">
-            <a href="#/tickets" class="btn btn--sky" data-route="/tickets">Get tickets</a>
-            <a href="#/about" class="btn btn--ghost" data-route="/about">Learn more →</a>
+            <a href="#/tickets" class="btn btn--sky" data-route="/tickets" data-i18n="hero_cta_tickets">Get tickets</a>
+            <a href="#/about" class="btn btn--ghost" data-route="/about" data-i18n="hero_cta_learn">Learn more →</a>
           </div>
         </div>
 
         <aside class="reel" aria-hidden="true">
           <img src="brand/reel.svg" alt="" class="reel__mark" />
           <div class="reel__row"><span>Reel</span><span>16mm</span></div>
-          <div class="display reel__year">20<span class="amp">26</span></div>
+          <div class="display reel__year ltr-embed">20<span class="amp">26</span></div>
           <div class="reel__row"><span></span><span>BH</span></div>
         </aside>
       </div>
 
       <div class="marquee" aria-hidden="true">
         <div class="marquee__track" id="marqueeTrack"></div>
+      </div>
+    </section>
+
+    <!-- Countdown -->
+    <section class="section section--ink">
+      <div class="section__inner">
+        <div class="kicker" data-i18n="countdown_kicker">Countdown</div>
+        <h2 class="display h2" style="font-size: clamp(2rem, 4vw, 3rem)"><span data-i18n="countdown_title1">Curtains up in</span><br /><span class="c-sky" data-i18n="countdown_title2">T-minus…</span></h2>
+        <div class="countdown ltr-embed" id="countdown" aria-live="polite">
+          <div class="countdown__unit"><span class="countdown__num" data-cd="days">--</span><span class="countdown__label" data-i18n="countdown_days">Days</span></div>
+          <div class="countdown__unit"><span class="countdown__num" data-cd="hours">--</span><span class="countdown__label" data-i18n="countdown_hours">Hours</span></div>
+          <div class="countdown__unit"><span class="countdown__num" data-cd="mins">--</span><span class="countdown__label" data-i18n="countdown_mins">Mins</span></div>
+          <div class="countdown__unit"><span class="countdown__num" data-cd="secs">--</span><span class="countdown__label" data-i18n="countdown_secs">Secs</span></div>
+        </div>
+        <p class="countdown__note" id="countdownNote" data-i18n="countdown_note">Placeholder target — exact dates announced soon.</p>
+      </div>
+    </section>
+
+    <!-- Blurb + Learn more -->
+    <section class="section section--ink-3">
+      <div class="section__inner">
+        <div class="kicker" data-i18n="blurb_kicker">What is SFFB?</div>
+        <p class="blurb" data-i18n-html="blurb_html">
+          The <span class="c-sky">Student Film Festival of Bahrain</span> is a weekend-long celebration of original student cinema —
+          shorts, features, and experimental work programmed alongside filmmaker Q&amp;As and workshops.
+          <span class="c-paper">Built by students, for students.</span>
+        </p>
+        <a href="#/about" class="learn-more" data-route="/about"><span data-i18n="learn_more">Learn more</span> <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <!-- Last year's festival stats + photo strip -->
+    <section class="section section--ink">
+      <img src="brand/layers.svg" alt="" class="section__decor section__decor--layers" aria-hidden="true" />
+      <div class="section__inner">
+        <div class="kicker" data-i18n="lastyear_kicker">Last year</div>
+        <h2 class="display h2" style="font-size: clamp(2rem, 4vw, 3rem)"><span data-i18n="lastyear_title1">SFFB 2025</span><br /><span class="c-red" data-i18n="lastyear_title2">highlights.</span></h2>
+        <div class="slideshow" id="photoSlideshow" aria-label="SFFB 2025 photo highlights">
+          <div class="slideshow__track">
+            <div class="slideshow__slide"><span><span data-i18n="slide_photo">Photo</span> 1</span></div>
+            <div class="slideshow__slide"><span><span data-i18n="slide_photo">Photo</span> 2</span></div>
+            <div class="slideshow__slide"><span><span data-i18n="slide_photo">Photo</span> 3</span></div>
+            <div class="slideshow__slide"><span><span data-i18n="slide_photo">Photo</span> 4</span></div>
+          </div>
+          <button type="button" class="slideshow__btn slideshow__btn--prev" id="slideshowPrev" aria-label="Previous photo">←</button>
+          <button type="button" class="slideshow__btn slideshow__btn--next" id="slideshowNext" aria-label="Next photo">→</button>
+          <div class="slideshow__dots" id="slideshowDots"></div>
+        </div>
+        <p class="photo-strip__caption" data-i18n="lastyear_caption">2025 moments — click the arrows or dots to browse the gallery.</p>
+      </div>
+    </section>
+
+    <!-- Sponsors strip on landing -->
+    <section class="section section--ink-3">
+      <div class="section__inner">
+        <div class="kicker" data-i18n="partners_kicker">Partners</div>
+        <h2 class="display h2" style="font-size: clamp(2rem, 4vw, 3rem)"><span data-i18n="partners_title1">Backed by</span><br /><span class="c-sky" data-i18n="partners_title2">our sponsors.</span></h2>
+        <p class="prose" data-i18n-html="partners_prose_html">Interested in supporting SFFB? Email <a href="mailto:sffb25@gmail.com">sffb25@gmail.com</a>.</p>
+        <div class="sponsor-grid" id="landingSponsorGrid"></div>
       </div>
     </section>
   </section>
@@ -87,20 +150,20 @@
     <section class="section section--ink-3">
       <img src="brand/layers.svg" alt="" class="section__decor section__decor--layers" aria-hidden="true" />
       <div class="section__inner">
-        <div class="kicker">01 / About</div>
-        <h2 class="display h2">A stage for<br /><span class="c-red">new voices.</span></h2>
+        <div class="kicker" data-i18n="about_kicker">01 / About</div>
+        <h2 class="display h2"><span data-i18n="about_title1">A stage for</span><br /><span class="c-red" data-i18n="about_title2">new voices.</span></h2>
         <div class="prose">
-          <p>SFFB is a student-run festival highlighting original Bahraini cinema. We program shorts, features, and experimental work from filmmakers still finding their voice.</p>
-          <p>Every year we bring the community together for screenings, filmmaker Q&amp;As, and workshops that make cinema feel possible.</p>
+          <p data-i18n="about_p1">SFFB is a student-run festival highlighting original Bahraini cinema. We program shorts, features, and experimental work from filmmakers still finding their voice.</p>
+          <p data-i18n="about_p2">Every year we bring the community together for screenings, filmmaker Q&amp;As, and workshops that make cinema feel possible.</p>
         </div>
       </div>
     </section>
     <section class="section section--ink">
       <img src="brand/light.svg" alt="" class="section__decor section__decor--light" aria-hidden="true" />
       <div class="section__inner">
-        <div class="kicker">02 / Team</div>
-        <h2 class="display h2">Meet the<br /><span class="c-grass">team.</span></h2>
-        <p class="prose">The volunteers, programmers, and organizers behind SFFB.</p>
+        <div class="kicker" data-i18n="team_kicker">02 / Team</div>
+        <h2 class="display h2"><span data-i18n="team_title1">Meet the</span><br /><span class="c-grass" data-i18n="team_title2">team.</span></h2>
+        <p class="prose" data-i18n="team_prose">The volunteers, programmers, and organizers behind SFFB.</p>
         <div class="team-grid" id="teamGrid"></div>
       </div>
     </section>
@@ -110,9 +173,9 @@
   <section class="page" data-page="/films">
     <section class="section section--ink">
       <div class="section__inner">
-        <div class="kicker">03 / Selection</div>
-        <h2 class="display h2">Film<br /><span class="c-sky">showcase.</span></h2>
-        <p class="prose">Posters and synopses arrive as the 2026 selection is finalized.</p>
+        <div class="kicker" data-i18n="films_kicker">03 / Selection</div>
+        <h2 class="display h2"><span data-i18n="films_title1">Film</span><br /><span class="c-sky" data-i18n="films_title2">showcase.</span></h2>
+        <p class="prose" data-i18n="films_prose">Posters and synopses arrive as the 2026 selection is finalized.</p>
         <div class="film-grid" id="filmGrid"></div>
       </div>
     </section>
@@ -123,14 +186,14 @@
     <section class="section section--sky">
       <div class="section__inner grid-2">
         <div>
-          <div class="kicker kicker--dark">04 / Upcoming</div>
-          <h2 class="display h2">Events<br />calendar.</h2>
-          <p class="prose">Screenings, panels, and after-parties will drop here as they're confirmed.</p>
+          <div class="kicker kicker--dark" data-i18n="events_kicker">04 / Upcoming</div>
+          <h2 class="display h2"><span data-i18n="events_title1">Events</span><br /><span data-i18n="events_title2">calendar.</span></h2>
+          <p class="prose" data-i18n="events_prose">Screenings, panels, and after-parties will drop here as they're confirmed.</p>
           <div class="calendar" aria-label="Events calendar" id="calendar"></div>
         </div>
         <div>
           <ul class="events">
-            <li class="events__empty">No events scheduled yet. Check back soon.</li>
+            <li class="events__empty" data-i18n="events_empty">No events scheduled yet. Check back soon.</li>
           </ul>
         </div>
       </div>
@@ -141,9 +204,9 @@
   <section class="page" data-page="/sponsors">
     <section class="section section--ink">
       <div class="section__inner">
-        <div class="kicker">05 / Sponsors</div>
-        <h2 class="display h2">Partners &amp;<br /><span class="c-sky">sponsors.</span></h2>
-        <p class="prose">Interested in supporting SFFB? Email <a href="mailto:sffb25@gmail.com">sffb25@gmail.com</a>.</p>
+        <div class="kicker" data-i18n="sponsors_kicker">05 / Sponsors</div>
+        <h2 class="display h2"><span data-i18n="sponsors_title1">Partners &amp;</span><br /><span class="c-sky" data-i18n="sponsors_title2">sponsors.</span></h2>
+        <p class="prose" data-i18n-html="sponsors_prose_html">Interested in supporting SFFB? Email <a href="mailto:sffb25@gmail.com">sffb25@gmail.com</a>.</p>
         <div class="sponsor-grid" id="sponsorGrid"></div>
       </div>
     </section>
@@ -153,12 +216,12 @@
   <section class="page" data-page="/tickets">
     <section class="section section--red">
       <div class="section__inner">
-        <div class="kicker kicker--dark" style="color: rgba(255,255,255,0.75)">06 / Tickets</div>
-        <h2 class="display h2">Tickets &amp;<br />passes.</h2>
-        <p class="prose" style="color: rgba(255,255,255,0.85)">Single-screening tickets and full-festival passes go on sale ahead of the 2026 edition.</p>
+        <div class="kicker kicker--dark" style="color: rgba(255,255,255,0.75)" data-i18n="tickets_kicker">06 / Tickets</div>
+        <h2 class="display h2"><span data-i18n="tickets_title1">Tickets &amp;</span><br /><span data-i18n="tickets_title2">passes.</span></h2>
+        <p class="prose" style="color: rgba(255,255,255,0.85)" data-i18n="tickets_prose">Single-screening tickets and full-festival passes go on sale ahead of the 2026 edition.</p>
         <div class="hero__actions">
-          <button type="button" class="btn btn--paper" id="ticketBtn">Buy tickets</button>
-          <a href="#/submit" class="btn btn--ghost" data-route="/submit">Filmmakers: submit →</a>
+          <button type="button" class="btn btn--paper" id="ticketBtn" data-i18n="tickets_buy">Buy tickets</button>
+          <a href="#/submit" class="btn btn--ghost" data-route="/submit" data-i18n="tickets_submit_cta">Filmmakers: submit →</a>
         </div>
       </div>
     </section>
@@ -169,14 +232,14 @@
     <section class="section section--ink-3">
       <div class="section__inner grid-2">
         <div>
-          <div class="kicker">07 / Filmmakers</div>
-          <h2 class="display h2">Submissions<br /><span class="c-grass">closed.</span></h2>
-          <p class="prose">Submissions for 2026 open later this year. Drop your email and we'll let you know the moment they do.</p>
+          <div class="kicker" data-i18n="submit_kicker">07 / Filmmakers</div>
+          <h2 class="display h2"><span data-i18n="submit_title1">Submissions</span><br /><span class="c-grass" data-i18n="submit_title2">closed.</span></h2>
+          <p class="prose" data-i18n="submit_prose">Submissions for 2026 open later this year. Drop your email and we'll let you know the moment they do.</p>
         </div>
         <form class="card" id="subscribeForm" novalidate>
-          <label for="email" class="kicker">Notify me</label>
-          <input id="email" name="email" type="email" required placeholder="you@somewhere.film" autocomplete="email" />
-          <button type="submit" class="btn btn--paper">Subscribe</button>
+          <label for="email" class="kicker" data-i18n="submit_notify">Notify me</label>
+          <input id="email" name="email" type="email" required data-i18n-placeholder="submit_placeholder" placeholder="you@somewhere.film" autocomplete="email" />
+          <button type="submit" class="btn btn--paper" data-i18n="submit_button">Subscribe</button>
           <p class="form__msg" id="formMsg" role="status"></p>
         </form>
       </div>
@@ -186,12 +249,31 @@
 
 <footer class="footer">
   <div class="footer__inner">
-    <img src="brand/logo-white.svg" alt="SFFB 2026" class="footer__logo" />
-    <p style="color: rgba(246,247,247,0.7); margin: 0">Student Film Festival of Bahrain.</p>
+    <div class="footer__grid">
+      <div>
+        <img src="brand/logo-white.svg" alt="SFFB 2026" class="footer__logo" />
+        <p style="color: rgba(246,247,247,0.7); margin: 0; max-width: 32rem" data-i18n="footer_tagline">Student Film Festival of Bahrain. Original student cinema on the big screen.</p>
+      </div>
+      <div>
+        <p class="footer__heading" data-i18n="footer_follow">Follow along</p>
+        <div class="socials">
+          <a href="https://instagram.com/sffb.bh" aria-label="Instagram" class="social" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5" stroke-width="3"/></svg>
+          </a>
+          <a href="https://tiktok.com/@sffb.bh" aria-label="TikTok" class="social" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3h-3v12.2a2.8 2.8 0 1 1-2.8-2.8v-3a5.8 5.8 0 1 0 5.8 5.8V9.4a7.3 7.3 0 0 0 4.5 1.5v-3a4.3 4.3 0 0 1-4.5-4.4V3Z"/></svg>
+          </a>
+          <a href="mailto:sffb25@gmail.com" aria-label="Email" class="social">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14"/><polyline points="3,7 12,13 21,7"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
     <p class="footer__meta">© <span id="year"></span> SFFB · sffb25@gmail.com</p>
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
