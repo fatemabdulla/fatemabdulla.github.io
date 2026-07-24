@@ -67,15 +67,12 @@ a { color: inherit; }
 .nav {
   position: sticky; top: 0; z-index: 40;
   display: flex; align-items: center; justify-content: space-between;
-  flex-direction: row-reverse;
   gap: 1rem;
   padding: 0.9rem 1.5rem;
   background: rgba(10,10,8,0.85);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(246,247,247,0.12);
 }
-.nav__links { flex-direction: row-reverse; }
-.nav__actions { flex-direction: row-reverse; }
 
 .nav__brand { display: flex; align-items: center; text-decoration: none; }
 .nav__brand img { height: 26px; width: auto; }
@@ -679,9 +676,6 @@ html[dir="rtl"] body { direction: rtl; }
 /* Numbers/dates read LTR even inside an RTL page */
 .ltr-embed { direction: ltr; unicode-bidi: isolate; }
 .countdown.ltr-embed { display: grid; } 
-html[dir="rtl"] .nav { flex-direction: row-reverse; }
-html[dir="rtl"] .nav__links { flex-direction: row-reverse; }
-html[dir="rtl"] .nav__actions { flex-direction: row-reverse; }
 html[dir="rtl"] .mobile-menu__links { text-align: right; }
 
 html[dir="rtl"] .hero__inner { direction: rtl; }
